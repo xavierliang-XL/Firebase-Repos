@@ -2,56 +2,56 @@
 import { ref } from "vue";
 import { useRouter } from "vue-router";
 import { isLoggedIn } from "../store/index";
+import { auth } from '../firebase/index.js'
+import { signInWithEmailAndPassword } from 'firebase/auth'
+
+
 
 const data = ref(false);
 const submitted = ref(false);
-const username = ref("");
-const password = ref("");
+const email = ref('');
+const password = ref('');
 const seconds = ref(5);
 const router = useRouter();
 
 const isSuccessful = () => {
     submitted.value = true;
-    if (username.value == "tmdb" && password.value == "movies") {
-        data.value = true;
-        var countDownDate = new Date().getTime();
-        const interval = setInterval(function () {
-            var now = new Date().getTime();
-            var distance = now - countDownDate;
-            seconds.value = Math.round(5 - (distance / 1000));
-            if (seconds.value <= 0) {
-                router.push('/Purchase');
-                isLoggedIn.value = true;
-                clearInterval(interval);
-            }
-        }, 1000);
+    try {
+        signInWithEmailAndPassword(auth, email.value, password.value).then(() => {
+            data.value = true;
+            var countDownDate = new Date().getTime();
+            const interval = setInterval(function () {
+                var now = new Date().getTime();
+                var distance = now - countDownDate;
+                seconds.value = Math.round(5 - (distance / 1000));
+                if (seconds.value <= 0) {
+                    router.push('/Purchase');
+                    isLoggedIn.value = true;
+                    clearInterval(interval);
+                }
+            }, 1000);
+        });
+    } catch (e) {
+        data.value = false;
     }
-    console.log(data.value);
 }
 
 </script>
 
 <template>
     <div class='login'>
-        <h1 class="title">Use tmdb+movies to Login! </h1>
+        <h1 class="title">Enter Email and Password to Login! </h1>
         <form class='form-1' action="#" method="GET">
             <table>
                 <tr>
-                    <td class="td_left"><label for="username">Username</label></td>
-                    <td class="td_right"><input type="text" name="username" id="username"
-                            placeholder="plz input username" v-model="username">
-                    </td>
+                    <td class="td_left"><label for="email">Email</label></td>
+                    <td class="td_right"><input type="email" name="email" id="email" placeholder="plz input email" v-model="email"></td>
                 </tr>
 
                 <tr>
                     <td class="td_left"><label for="password">Password</label></td>
                     <td class="td_right"><input type="password" name="password" id="password"
                             placeholder="plz input password" v-model="password"></td>
-                </tr>
-
-                <tr>
-                    <td class="td_left"><label for="email">Email</label></td>
-                    <td class="td_right"><input type="email" name="email" id="email" placeholder="plz input email"></td>
                 </tr>
 
                 <tr>
