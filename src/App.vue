@@ -17,10 +17,10 @@ import { isLoggedIn } from "./store/index";
       <router-link to="/Login" custom v-slot="{ navigate }" v-if="!isLoggedIn">
         <button @click="navigate" role="link">Login</button>
       </router-link>
-      <router-link to="/Register" custom v-slot="{navigate}" v-if="!isLoggedIn">
+      <router-link to="/Register" custom v-slot="{ navigate }" v-if="!isLoggedIn">
         <button @click="navigate" role="link">Register</button>
       </router-link>
-      <router-link to="/" @click="isLoggedIn=false" v-if="isLoggedIn">
+      <router-link to="/" @click="isLoggedIn = false" v-if="isLoggedIn">
         <button @click="navigate" role="link">Log Out</button>
       </router-link>
       <router-link to="/Purchase" custom v-slot="{ navigate }" v-if="isLoggedIn">

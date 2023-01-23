@@ -1,7 +1,6 @@
 <script setup>
 import { useStore } from "../store/index.js"
 const store = useStore();
-console.log(store.cart.values());
 </script>
 
 <template>
@@ -15,7 +14,7 @@ console.log(store.cart.values());
             </div>
         </div>
     </div>
-    <button class="purchase_btn" @click="cart.clear()">purchase</button>
+    <button class="purchase_btn" @click="store.clear()">purchase</button>
 
 </template>
 

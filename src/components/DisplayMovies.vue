@@ -56,7 +56,7 @@ const search = async (direction) => {
   });
 };
 
-// SHOULD ONLY BE RUN ONCE!!!!
+// everytime genre changes
 // await store.populateFirestore();
 </script>
 
@@ -65,9 +65,9 @@ const search = async (direction) => {
   <select v-model="genre" @change="getGenres()">
     <option value="Action">Action</option>
     <option value="Family">Family</option>
-    <option value="Science Fiction">Science Fiction</option>
-    <option value="Adventure">Adventure</option>
-    <option value="Fantasy">Fantasy</option>
+    <option value="History">History</option>
+    <option value="Animation">Animation</option>
+    <option value="Mystery">Mystery</option>
   </select>
   <template v-if="searchResults.length">
     <div class="navigation">
@@ -76,16 +76,18 @@ const search = async (direction) => {
       <button v-show="page < totalPages" @click="search(1)">Next</button>
     </div>
   </template>
-  <div class="purchase-container">
-    <template v-if="searchResults.length">
-      <img v-for="movie in searchResults" :id="movie.id" @click="openModal(movie)"
-        :src="`https://image.tmdb.org/t/p/w500${movie.poster}`" />
-    </template>
-    <template v-else>
-      <img v-for="movie in store.movies" :id="movie.id" @click="openModal(movie)"
-        :src="`https://image.tmdb.org/t/p/w500${movie.poster}`" />
-    </template>
-    <Modal v-if="showModal" @toggleModal="closeModal()" :value="selectedId" />
+  <div class="movies">
+    <div class="purchase-container">
+      <template v-if="searchResults.length">
+        <img v-for="movie in searchResults" :id="movie.id" @click="openModal(movie)"
+          :src="`https://image.tmdb.org/t/p/w500${movie.poster}`" />
+      </template>
+      <template v-else>
+        <img v-for="movie in store.movies" :id="movie.id" @click="openModal(movie)"
+          :src="`https://image.tmdb.org/t/p/w500${movie.poster}`" />
+      </template>
+      <Modal v-if="showModal" @toggleModal="closeModal()" :value="selectedId" />
+    </div>
   </div>
 </template>
 
@@ -100,7 +102,7 @@ const search = async (direction) => {
   font-family: 'Courier New', Courier, monospace;
 }
 
-.container {
+.purchase-container {
   box-sizing: border-box;
   max-width: max-content;
   display: grid;
@@ -111,10 +113,11 @@ const search = async (direction) => {
   grid-template-columns: auto auto auto;
 }
 
-.movies>img {
+.purchase-container>img {
   height: 90.5%;
   width: 99%;
   margin: auto;
+  border-radius:10px;
   border: 5px solid black;
 }
 </style>

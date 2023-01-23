@@ -1,7 +1,6 @@
 <script setup>
 import { useStore } from "../store/index.js";
 const props = defineProps(["value"]);
-console.log(props.value);
 const emits = defineEmits(["toggleModal"]);
 const store = useStore();
 
@@ -19,12 +18,12 @@ let data = (
     <div class="modal-outer-container" @click.self="emits('toggleModal')" custom>
       <div class="modal-inner-container">
         <button class="close-button" @click="emits('toggleModal')">Close</button>
-        <img v-if="props.value.poster" :src="'https://image.tmdb.org/t/p/w500' + props.value.poster" class="img" />
+        <img v-if="data.poster" :src="'https://image.tmdb.org/t/p/w500' + props.value.poster" class="img" />
         <p>
-        <h1>{{ props.value.title }}</h1>
-        Original Title - {{ props.value.original_title }} <br />
-        Release Date: {{ props.value.release_date }} <br />
-        Overview: {{ props.value.overview }}
+        <h1>{{ data.title }}</h1>
+        Original Title - {{ data.original_title }} <br />
+        Release Date: {{ data.release_date }} <br />
+        Overview: {{ data.overview }}
         </p>
         <button class="cart" id="btn_sub"           @click="
         store.addToCart(props.value.id, {
