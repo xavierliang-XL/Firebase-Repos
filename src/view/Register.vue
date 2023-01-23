@@ -25,7 +25,6 @@ const registerUserByEmail = async () => {
 const registerUserByGoogle = async () => {
   const provider = new GoogleAuthProvider();
   const user = await signInWithPopup(auth, provider);
-  console.log(user);
 };
 </script>
 
@@ -33,7 +32,7 @@ const registerUserByGoogle = async () => {
   <div>
     <h1>Login</h1>
     <h2>Register by Google</h2>
-    <button @click="registerUserByGoogle()">Google</button>
+    <button @click="registerUserByGoogle">Google</button>
     <hr />
     <h2>Register by email</h2>
     <form @submit.prevent="registerUserByEmail()">

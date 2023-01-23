@@ -27,7 +27,7 @@ export const useStore = defineStore('store', {
         data = data.map((movie) => {
           return {
             id: movie.id,
-            poster: movie.poster_path,
+            image: movie.poster_path,
           }
         });
         await setDoc(doc(firestore, "Genre", value), { data });
