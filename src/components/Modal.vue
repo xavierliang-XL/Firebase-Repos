@@ -6,7 +6,7 @@ const emits = defineEmits(["toggleModal"]);
 const store = useStore();
 
 let data = (
-  await axios.get(`https://api.themoviedb.org/3/movie/${props.id}`, {
+  await axios.get(`https://api.themoviedb.org/3/movie/${props.value.id}`, {
     params: {
       api_key: "23b3a0cee96fcac58b28918686474f75",
     },

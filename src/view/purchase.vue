@@ -5,7 +5,9 @@ import DisplayMovies from '../components/DisplayMovies.vue';
 
 
 <template>
+  <Suspense>
     <DisplayMovies />
+  </Suspense>
 </template>
 
 <style scoped>

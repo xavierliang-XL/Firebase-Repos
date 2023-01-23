@@ -7,22 +7,20 @@ import { signInWithEmailAndPassword } from 'firebase/auth'
 
 
 
-const data = ref();
+const data = ref(true);
 const submitted = ref(false);
 const email = ref('');
 const password = ref('');
-const seconds = ref(5);
 const router = useRouter();
 
 const isSuccessful = () => {
     submitted.value = true;
     try {
         signInWithEmailAndPassword(auth, email.value, password.value).then(() => {
-            data.value = true;
             router.push('/Purchase');
             isLoggedIn.value = true;
         });
-    } catch (e) {
+    } catch (err) {
         data.value = false;
     }
 
@@ -75,7 +73,7 @@ const isSuccessful = () => {
         </form>
 
         <div v-if="submitted" class="submitted">
-            <p v-if="!data" class="Deny">Invalid input. Incorrect username or password.</p>
+            <p v-if="data==false" class="Deny">Invalid input. Incorrect username or password.</p>
         </div>
     </div>
 </template>

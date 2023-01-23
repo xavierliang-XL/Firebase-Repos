@@ -47,11 +47,11 @@ const search = async (direction) => {
   searchResults.value = data.results.map((movie) => {
     return {
       id: movie.id,
-            title: movie.title,
-            original_title: movie.original_title,
-            release_date: movie.release_date,
-            overview: movie.overview,
-            poster: movie.poster_path,
+      title: movie.title,
+      original_title: movie.original_title,
+      release_date: movie.release_date,
+      overview: movie.overview,
+      poster: movie.poster_path,
     };
   });
 };
@@ -78,20 +78,12 @@ const search = async (direction) => {
   </template>
   <div class="purchase-container">
     <template v-if="searchResults.length">
-      <img
-        v-for="movie in searchResults"
-        :id="movie.id"
-        @click="openModal(movie)"
-        :src="`https://image.tmdb.org/t/p/w500${movie.poster}`"
-      />
+      <img v-for="movie in searchResults" :id="movie.id" @click="openModal(movie)"
+        :src="`https://image.tmdb.org/t/p/w500${movie.poster}`" />
     </template>
     <template v-else>
-      <img
-        v-for="movie in store.movies"
-        :id="movie.id"
-        @click="openModal(movie)"
-        :src="`https://image.tmdb.org/t/p/w500${movie.poster}`"
-      />
+      <img v-for="movie in store.movies" :id="movie.id" @click="openModal(movie)"
+        :src="`https://image.tmdb.org/t/p/w500${movie.poster}`" />
     </template>
     <Modal v-if="showModal" @toggleModal="closeModal()" :value="selectedId" />
   </div>

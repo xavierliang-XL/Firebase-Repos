@@ -27,10 +27,6 @@ export const useStore = defineStore('store', {
         data = data.map((movie) => {
           return {
             id: movie.id,
-            title: movie.title,
-            original_title: movie.original_title,
-            release_date: movie.release_date,
-            overview: movie.overview,
             poster: movie.poster_path,
           }
         });
