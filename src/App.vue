@@ -1,11 +1,8 @@
 <script setup>
 // This starter template is using Vue 3 <script setup> SFCs
 // Check out https://vuejs.org/api/sfc-script-setup.html#script-setup
-import { useRouter } from "vue-router";
-import { isLoggedIn, useCart } from "./store/index";
+import { isLoggedIn } from "./store/index";
 
-const router = useRouter();
-const cart = useCart();
 </script>
 
 <template>
@@ -30,9 +27,6 @@ const cart = useCart();
         <button @click="navigate" role="link">Purchase</button>
       </router-link>
       <router-link to="/ShoppingCart" custom v-slot="{ navigate }" v-if="isLoggedIn">
-        <div class="count">
-          {{ cart.count }}
-        </div>
         <img src="./assets/images/cart.png" @click="navigate" role="link" id="cart">
       </router-link>
 

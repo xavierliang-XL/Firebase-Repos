@@ -33,7 +33,7 @@ const registerUserByGoogle = async () => {
   <div>
     <h1>Login</h1>
     <h2>Register by Google</h2>
-    <button @click="registerUserByGoogle">Google</button>
+    <button @click="registerUserByGoogle()">Google</button>
     <hr />
     <h2>Register by email</h2>
     <form @submit.prevent="registerUserByEmail()">

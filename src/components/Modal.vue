@@ -1,8 +1,17 @@
 <script setup>
-import { useCart } from "../store/index.js";
+import { useStore } from "../store/index.js";
 const props = defineProps(["value"]);
+console.log(props.value);
 const emits = defineEmits(["toggleModal"]);
-const cart = useCart();
+const store = useStore();
+
+let data = (
+  await axios.get(`https://api.themoviedb.org/3/movie/${props.id}`, {
+    params: {
+      api_key: "23b3a0cee96fcac58b28918686474f75",
+    },
+  })
+).data;
 </script>
 
 <template>
@@ -17,7 +26,13 @@ const cart = useCart();
         Release Date: {{ props.value.release_date }} <br />
         Overview: {{ props.value.overview }}
         </p>
-        <button class="cart" id="btn_sub" @click="cart.addToCart(props.value.id)">Add To Cart</button>
+        <button class="cart" id="btn_sub"           @click="
+        store.addToCart(props.value.id, {
+          id: data.id,
+          poster: data.poster_path,
+          title: data.title,
+          date: data.release_date,
+        })">Add To Cart</button>
       </div>
     </div>
   </Teleport>

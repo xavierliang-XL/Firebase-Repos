@@ -1,26 +1,20 @@
 <script setup>
-import { useCart, useStore } from "../store/index.js"
-const cart = useCart();
+import { useStore } from "../store/index.js"
 const store = useStore();
-console.log(cart.purchase);
+console.log(store.cart.values());
 </script>
 
 <template>
-
-    <div class="cartlist" v-for="item in new Set(cart.purchase)" v-if="cart.purchase">
+    <div class="cartlist" v-for="movie in Array.from(store.cart.values())">
         <div class="display">
             <div class="name">
-                {{ item }}: {{ store.movies.filter(x => x.id == item)[0].title }}
+                {{ movie.id }}: {{ movie.title }}
             </div>
             <div class="count">
-                <button class="func_btn" @click="cart.addToCart(item)">+</button>
-                count: {{ cart.purchase.filter(x => x == item).length }}
-                <button class="func_btn" @click="cart.removeFromCart(item)">-</button>
+                <button @click="store.removeFromCart(movie.id)">Remove</button>
             </div>
         </div>
-
     </div>
-
     <button class="purchase_btn" @click="cart.clear()">purchase</button>
 
 </template>

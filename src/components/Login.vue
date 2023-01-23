@@ -7,7 +7,7 @@ import { signInWithEmailAndPassword } from 'firebase/auth'
 
 
 
-const data = ref(false);
+const data = ref();
 const submitted = ref(false);
 const email = ref('');
 const password = ref('');
@@ -19,21 +19,13 @@ const isSuccessful = () => {
     try {
         signInWithEmailAndPassword(auth, email.value, password.value).then(() => {
             data.value = true;
-            var countDownDate = new Date().getTime();
-            const interval = setInterval(function () {
-                var now = new Date().getTime();
-                var distance = now - countDownDate;
-                seconds.value = Math.round(5 - (distance / 1000));
-                if (seconds.value <= 0) {
-                    router.push('/Purchase');
-                    isLoggedIn.value = true;
-                    clearInterval(interval);
-                }
-            }, 1000);
+            router.push('/Purchase');
+            isLoggedIn.value = true;
         });
     } catch (e) {
         data.value = false;
     }
+
 }
 
 </script>
@@ -45,7 +37,8 @@ const isSuccessful = () => {
             <table>
                 <tr>
                     <td class="td_left"><label for="email">Email</label></td>
-                    <td class="td_right"><input type="email" name="email" id="email" placeholder="plz input email" v-model="email"></td>
+                    <td class="td_right"><input type="email" name="email" id="email" placeholder="plz input email"
+                            v-model="email"></td>
                 </tr>
 
                 <tr>
@@ -82,8 +75,6 @@ const isSuccessful = () => {
         </form>
 
         <div v-if="submitted" class="submitted">
-            <p v-if="data" class="Welcome">Welcome! You will be directed to the purchase page in {{ seconds }} seconds
-            </p>
             <p v-if="!data" class="Deny">Invalid input. Incorrect username or password.</p>
         </div>
     </div>
