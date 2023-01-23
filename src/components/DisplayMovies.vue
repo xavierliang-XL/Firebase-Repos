@@ -61,7 +61,7 @@ const search = async (direction) => {
 </script>
 
 <template>
-  <input type="search" v-model="criteria" @keydown.enter="search(0)" />
+  <input type="search" v-model="criteria" @keydown.enter="search(0)" class="search" placeholder="Search" />
   <select v-model="genre" @change="getGenres()">
     <option value="Action">Action</option>
     <option value="Family">Family</option>
@@ -71,9 +71,9 @@ const search = async (direction) => {
   </select>
   <template v-if="searchResults.length">
     <div class="navigation">
-      <button v-show="page > 1" @click="search(-1)">Prev</button>
+      <button v-show="page > 1" @click="search(-1)" class="prev">Prev</button>
       <h1>{{ `Page ${page} of ${totalPages}` }}</h1>
-      <button v-show="page < totalPages" @click="search(1)">Next</button>
+      <button v-show="page < totalPages" @click="search(1)" class="next">Next</button>
     </div>
   </template>
   <div class="movies">
@@ -92,6 +92,24 @@ const search = async (direction) => {
 </template>
 
 <style scoped>
+select {
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  width: 10%;
+  height: 25px;
+  color: white;
+  background-color: black;
+  margin-left: 10px;
+  font-weight: 400;
+  text-align: center;
+}
+
+.search {
+  border: 2px solid black;
+  border-radius: 10px;
+  height: 25px;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
 .movies {
   background-color: darkred;
   border-radius: 20px;
@@ -117,7 +135,41 @@ const search = async (direction) => {
   height: 90.5%;
   width: 99%;
   margin: auto;
-  border-radius:10px;
+  border-radius: 10px;
   border: 5px solid black;
+}
+
+.prev,
+.next {
+  width: 100px;
+  height: 30px;
+  background: linear-gradient(to right, red, darkred);
+  border: 1px solid red;
+  border-radius: 5px;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  font-weight: 600;
+  font-size: 15px;
+  margin-bottom: 20px;
+}
+
+.navigation {
+  background-color: black;
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  color: white;
+  text-align: center;
+}
+
+.prev {
+  float: left;
+}
+
+.next {
+  float: right;
+  transform: translateY(-200%);
+}
+
+.prev:hover,
+.next:hover {
+  color: white;
 }
 </style>

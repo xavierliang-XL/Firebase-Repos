@@ -59,7 +59,7 @@ nav>p {
 nav>ul {
   float: right;
   padding: auto;
-  width: 20%;
+  width: 30%;
   margin: 0;
   margin-right: 1.9%;
 }

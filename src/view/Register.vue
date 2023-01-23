@@ -28,7 +28,7 @@ const registerUserByGoogle = async () => {
   const provider = new GoogleAuthProvider();
   const user = await signInWithPopup(auth, provider);
   router.push("/Purchase");
-  isLoggedIn.value=true;
+  isLoggedIn.value = true;
 };
 </script>
 
@@ -40,11 +40,11 @@ const registerUserByGoogle = async () => {
     <hr />
     <h2>Register by Email</h2>
     <form @submit.prevent="registerUserByEmail()">
-      <input v-model="username" type="text" placeholder="username" class="text"/> <br />
+      <input v-model="username" type="text" placeholder="username" class="text" /> <br />
       <input v-model="email" type="email" placeholder="email" class="text" /> <br />
-      <input v-model="password1" type="password" placeholder="password" class="text"/> <br />
-      <input v-model="password2" type="password" placeholder="re-enter password" class="text"/> <br />
-      <input type="submit" value="Register" class="btn_sub"/>
+      <input v-model="password1" type="password" placeholder="password" class="text" /> <br />
+      <input v-model="password2" type="password" placeholder="re-enter password" class="text" /> <br />
+      <input type="submit" value="Register" class="btn_sub" />
     </form>
   </div>
 </template>
@@ -62,7 +62,7 @@ const registerUserByGoogle = async () => {
   font-size: 20px;
 }
 
-.text{
+.text {
   width: 251px;
   height: 32px;
   border: 1px solid #A6A6A6;

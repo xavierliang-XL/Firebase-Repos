@@ -10,7 +10,7 @@ const store = useStore();
                 {{ movie.id }}: {{ movie.title }}
             </div>
             <div class="count">
-                <button @click="store.removeFromCart(movie.id)">Remove</button>
+                <button @click="store.removeFromCart(movie.id)" class="func_btn">Remove</button>
             </div>
         </div>
     </div>
@@ -59,14 +59,14 @@ const store = useStore();
 }
 
 .func_btn {
-    width: 30px;
+    width: 100px;
     height: 30px;
     background: linear-gradient(to right, red, darkred);
     border: 1px solid red;
     border-radius: 5px;
     font-family: Georgia, 'Times New Roman', Times, serif;
     font-weight: 600;
-    font-size: 20px;
+    font-size: 15px;
     margin-bottom: 20px;
 }
 
